@@ -12,588 +12,6 @@
     "repository": "https://github.com/husseinahamed/tw-motion",
     "components": [
         {
-            "title": "Getting Started Guide",
-            "icon": "sicon-rocket",
-            "name": "getting-started-guide",
-            "key": "0a1b2c3d-4e5f-6g7h-8i9j-0k1l2m3n4o5p",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/getting-started.png"
-        },
-        {
-            "title": "Basic Inputs",
-            "icon": "sicon-format-text-alt",
-            "name": "basic-inputs",
-            "key": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/text-input.png",
-            "fields": [
-                {
-                    "id": "text",
-                    "icon": "sicon-format-text-alt",
-                    "type": "string",
-                    "label": "Text",
-                    "placeholder": "Enter text here...",
-                    "format": "text",
-                    "required": true,
-                    "minLength": 1,
-                    "maxLength": 100,
-                    "value": "Sample text value"
-                },
-                {
-                    "id": "email",
-                    "icon": "sicon-mail",
-                    "type": "string",
-                    "label": "Email Input",
-                    "placeholder": "Enter email address...",
-                    "format": "email",
-                    "required": true,
-                    "description": "An email input field with validation",
-                    "value": "example@salla.sa"
-                },
-                {
-                    "id": "url",
-                    "icon": "sicon-link",
-                    "type": "string",
-                    "label": "URL Input",
-                    "placeholder": "Enter website URL...",
-                    "format": "url",
-                    "required": false,
-                    "description": "A URL input field with validation",
-                    "value": "https://salla.dev"
-                },
-                {
-                    "id": "password",
-                    "icon": "sicon-lock",
-                    "type": "string",
-                    "label": "Password Input",
-                    "placeholder": "Enter password...",
-                    "format": "password",
-                    "hide": true,
-                    "required": false
-                },
-                {
-                    "id": "textarea",
-                    "icon": "sicon-paragraph",
-                    "type": "string",
-                    "label": "Textarea",
-                    "placeholder": "Enter multi-line text here...",
-                    "format": "textarea",
-                    "required": true,
-                    "minLength": 1,
-                    "maxLength": 500,
-                    "rows": 4,
-                    "value": "This is a sample text\nwith multiple lines\nto demonstrate the textarea."
-                },
-                {
-                    "id": "number",
-                    "icon": "sicon-calculator",
-                    "type": "number",
-                    "label": "Basic Number",
-                    "placeholder": "Enter a number...",
-                    "format": "number",
-                    "inputType": "number",
-                    "required": true,
-                    "value": 42
-                },
-                {
-                    "id": "float",
-                    "icon": "sicon-calculator",
-                    "type": "number",
-                    "label": "Float Number",
-                    "placeholder": "Enter a decimal number...",
-                    "format": "float",
-                    "inputType": "number",
-                    "required": false,
-                    "step": 0.1,
-                    "value": 3.14
-                },
-                {
-                    "id": "units",
-                    "icon": "sicon-tag",
-                    "type": "number",
-                    "label": "Units",
-                    "placeholder": "Enter units...",
-                    "format": "units",
-                    "required": true,
-                    "step": 0.5,
-                    "unit": "kg",
-                    "value": 1
-                },
-                {
-                    "id": "slider",
-                    "type": "number",
-                    "label": "Slider",
-                    "format": "slider",
-                    "inputType": "range",
-                    "required": false,
-                    "minimum": 0,
-                    "maximum": 100,
-                    "step": 1,
-                    "value": 75
-                },
-                {
-                    "id": "checkbox",
-                    "icon": "sicon-check-circle",
-                    "type": "boolean",
-                    "label": "Checkbox",
-                    "format": "checkbox",
-                    "required": true,
-                    "description": "Enable or disable this feature",
-                    "value": true
-                },
-                {
-                    "id": "switch",
-                    "icon": "sicon-bell",
-                    "type": "boolean",
-                    "label": "Switch",
-                    "format": "switch",
-                    "required": false,
-                    "description": "Enable notifications",
-                    "value": false
-                }
-            ]
-        },
-        {
-            "title": "Items Select Input",
-            "icon": "sicon-list",
-            "name": "items-select-input",
-            "key": "5e6f7g8h-9i0j-1k2l-3m4n-5o6p7q8r9s0t",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/items-select-input.png",
-            "fields": [
-                {
-                    "id": "dropdown-list",
-                    "icon": "sicon-folder",
-                    "type": "items",
-                    "source": "Manual",
-                    "label": "Dropdown List",
-                    "format": "dropdown-list",
-                    "required": true,
-                    "options": [
-                        {
-                            "label": "Clothing",
-                            "value": "clothing",
-                            "key": "clothing"
-                        },
-                        {
-                            "label": "Electronics",
-                            "value": "electronics",
-                            "key": "electronics"
-                        },
-                        {
-                            "label": "Home & Garden",
-                            "value": "home",
-                            "key": "home"
-                        }
-                    ],
-                    "selected": [
-                        {
-                            "label": "Electronics",
-                            "value": "electronics",
-                            "key": "electronics"
-                        }
-                    ]
-                },
-                {
-                    "id": "checkbox-list",
-                    "icon": "sicon-tag",
-                    "type": "items",
-                    "label": "Checkbox List",
-                    "format": "checkbox-list",
-                    "required": false,
-                    "multichoice": true,
-                    "description": "Select multiple tags",
-                    "options": [
-                        {
-                            "label": "New",
-                            "value": "new",
-                            "key": "new"
-                        },
-                        {
-                            "label": "Featured",
-                            "value": "featured",
-                            "key": "featured"
-                        },
-                        {
-                            "label": "Offer",
-                            "value": "offer",
-                            "key": "offer"
-                        }
-                    ],
-                    "selected": [
-                        {
-                            "label": "New",
-                            "value": "new",
-                            "key": "new"
-                        },
-                        {
-                            "label": "Offer",
-                            "value": "offer",
-                            "key": "offer"
-                        }
-                    ]
-                },
-                {
-                    "id": "radio-list",
-                    "icon": "sicon-truck",
-                    "type": "items",
-                    "label": "Radio List",
-                    "format": "radio-list",
-                    "required": true,
-                    "options": [
-                        {
-                            "label": "Standard",
-                            "value": "standard",
-                            "key": "standard"
-                        },
-                        {
-                            "label": "Express",
-                            "value": "express",
-                            "key": "express"
-                        },
-                        {
-                            "label": "Priority",
-                            "value": "priority",
-                            "key": "priority"
-                        }
-                    ],
-                    "selected": [
-                        {
-                            "label": "Standard",
-                            "value": "standard",
-                            "key": "standard"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "Dropdown List Source Input",
-            "icon": "sicon-database",
-            "name": "dropdown-list-source-input",
-            "key": "9i0j1k2l-3m4n-5o6p-7q8r-9s0t1u2v3w4x",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/dropdown-list-source-input.png",
-            "fields": [
-                {
-                    "id": "product",
-                    "icon": "sicon-box",
-                    "type": "items",
-                    "label": "Product",
-                    "format": "dropdown-list",
-                    "multichoice": true,
-                    "required": true,
-                    "description": "Select multiple products",
-                    "source": "products"
-                },
-                {
-                    "id": "category",
-                    "icon": "sicon-folder",
-                    "type": "items",
-                    "label": "Category",
-                    "format": "dropdown-list",
-                    "required": false,
-                    "source": "categories"
-                },
-                {
-                    "id": "brand",
-                    "icon": "sicon-brand",
-                    "type": "items",
-                    "label": "Brand",
-                    "format": "dropdown-list",
-                    "required": true,
-                    "source": "brands"
-                },
-                {
-                    "id": "blog_article",
-                    "icon": "sicon-article",
-                    "type": "items",
-                    "label": "Blog Article",
-                    "format": "dropdown-list",
-                    "required": false,
-                    "source": "blog_articles"
-                },
-                {
-                    "id": "blog_category",
-                    "icon": "sicon-folder-article",
-                    "type": "items",
-                    "label": "Blog Category",
-                    "format": "dropdown-list",
-                    "required": false,
-                    "source": "blog_categories"
-                },
-                {
-                    "id": "page",
-                    "icon": "sicon-page",
-                    "type": "items",
-                    "label": "Page",
-                    "format": "dropdown-list",
-                    "required": false,
-                    "source": "pages"
-                },
-                {
-                    "id": "special_offer",
-                    "icon": "sicon-discount",
-                    "type": "items",
-                    "label": "Special Offer",
-                    "format": "dropdown-list",
-                    "required": false,
-                    "source": "special_offers"
-                },
-                {
-                    "id": "branch",
-                    "icon": "sicon-store",
-                    "type": "items",
-                    "label": "Branch",
-                    "format": "dropdown-list",
-                    "required": false,
-                    "source": "branches"
-                },
-                {
-                    "id": "product_tag",
-                    "icon": "sicon-tag",
-                    "type": "items",
-                    "label": "Product Tag",
-                    "format": "dropdown-list",
-                    "required": false,
-                    "source": "products_tags"
-                },
-                {
-                    "id": "source_url",
-                    "icon": "sicon-shopping-bag",
-                    "type": "items",
-                    "label": "Multi Conditional Sources",
-                    "format": "variable-list",
-                    "required": true,
-                    "source": "custom",
-                    "selected": [
-                        {
-                            "label": "Article",
-                            "key": "blog_articles",
-                            "value": "blog_articles"
-                        }
-                    ],
-                    "sources": [
-                        {
-                            "label": "Product",
-                            "key": "products",
-                            "value": "products"
-                        },
-                        {
-                            "label": "Category",
-                            "key": "categories",
-                            "value": "categories"
-                        },
-                        {
-                            "label": "Brand",
-                            "key": "brands",
-                            "value": "brands"
-                        },
-                        {
-                            "label": "Page",
-                            "key": "pages",
-                            "value": "pages"
-                        },
-                        {
-                            "label": "Article",
-                            "key": "blog_articles",
-                            "value": "blog_articles"
-                        },
-                        {
-                            "label": "Blog Category",
-                            "key": "blog_categories",
-                            "value": "blog_categories"
-                        },
-                        {
-                            "label": "Offer",
-                            "key": "offers_link",
-                            "value": "offers_link"
-                        },
-                        {
-                            "label": "Brand Link",
-                            "key": "brands_link",
-                            "value": "brands_link"
-                        },
-                        {
-                            "label": "Blog Link",
-                            "key": "blog_link",
-                            "value": "blog_link"
-                        },
-                        {
-                            "label": "Custom",
-                            "key": "custom",
-                            "value": "custom"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "Advanced Inputs",
-            "icon": "sicon-star",
-            "name": "advanced-inputs",
-            "key": "2l3m4n5o-6p7q-8r9s-0t1u-2v3w4x5y6z7a",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/advanced-inputs.png",
-            "fields": [
-                {
-                    "id": "icon",
-                    "type": "string",
-                    "format": "icon",
-                    "label": "Icon",
-                    "class": "inline form--inline",
-                    "required": false,
-                    "value": "sicon-star"
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-format-text-alt",
-                    "multilanguage": true,
-                    "id": "lingual_text",
-                    "value": null,
-                    "required": false,
-                    "format": "text",
-                    "description": null,
-                    "placeholder": "Enter icon title here...",
-                    "minLength": 2,
-                    "maxLength": 80
-                },
-                {
-                    "id": "color",
-                    "icon": "sicon-color-palette",
-                    "format": "color",
-                    "type": "string",
-                    "inputType": "color",
-                    "label": "Color",
-                    "required": true,
-                    "value": "#2377CD",
-                    "class": "mt-4"
-                },
-                {
-                    "id": "image",
-                    "icon": "sicon-image-landscape",
-                    "type": "string",
-                    "format": "image",
-                    "label": "Image",
-                    "required": false,
-                    "value": "https://cdn.salla.sa/form-builder/EMl1Ae8o35qzaG0HvVqz0IpeqcK9uyHliKksscja.jpg"
-                },
-                {
-                    "id": "date",
-                    "icon": "sicon-calendar",
-                    "type": "string",
-                    "format": "date",
-                    "inputType": "date",
-                    "label": "Date",
-                    "required": true,
-                    "value": "2025-07-15"
-                },
-                {
-                    "id": "time",
-                    "icon": "sicon-clock",
-                    "type": "string",
-                    "format": "time",
-                    "inputType": "date",
-                    "label": "Time",
-                    "required": false,
-                    "value": "09:00"
-                },
-                {
-                    "id": "datetime",
-                    "icon": "sicon-calendar-time",
-                    "type": "string",
-                    "format": "datetime",
-                    "inputType": "date",
-                    "label": "Date & Time",
-                    "required": false,
-                    "value": "2025-07-20T14:30:00"
-                }
-            ]
-        },
-        {
-            "title": "بطاقة منتج",
-            "icon": "sicon-album-photo",
-            "name": "product-card",
-            "key": "0d1f3b8e-6a2c-4f5d-9e7b-8c1a2b3d4e5f",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png",
-            "fields": [
-                {
-                    "id": "product",
-                    "icon": "sicon-keyboard_arrow_down",
-                    "type": "items",
-                    "label": "اختر المنتج",
-                    "placeholder": "البحث في قائمة المنتجات...",
-                    "format": "dropdown-list",
-                    "source": "products",
-                    "options": [],
-                    "required": true,
-                    "selected": [],
-                    "searchable": true,
-                    "multichoice": false
-                }
-            ]
-        },
-        {
-            "title": "جدول محتوى بسيط",
-            "icon": "sicon-layout-grid-rearrange",
-            "name": "table-list",
-            "image": "https://cdn.salla.network/images/themes/raed/main-links-with-bg.jpg",
-            "key": "9f8e7d6c-5b4a-3c2d-1e0f-a9b8c7d6e5f4",
-            "fields": [
-                {
-                    "id": "items",
-                    "type": "collection",
-                    "format": "collection",
-                    "required": true,
-                    "minLength": 1,
-                    "maxLength": 100,
-                    "item_label": "صفوف الجدول",
-                    "value": [
-                        {
-                            "title": "Featured Products",
-                            "description": "Our best-selling items with special discounts"
-                        },
-                        {
-                            "title": "New Arrivals",
-                            "description": "Latest additions to our collection"
-                        },
-                        {
-                            "title": "Special Offers",
-                            "description": "Limited-time deals and promotions"
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "string",
-                            "icon": "sicon-format-text-alt",
-                            "id": "title",
-                            "required": true,
-                            "format": "text",
-                            "placeholder": "أدخل عنوان الصف هنا...",
-                            "minLength": 1,
-                            "maxLength": 100
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-format-text-alt",
-                            "id": "description",
-                            "format": "textarea",
-                            "placeholder": "أدخل وصف الصف هنا...",
-                            "maxLength": 1000
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "رجوع للأعلى",
-            "icon": "sicon-arrow-up",
-            "name": "scroll-top",
-            "key": "8c7b6a5d-4e3f-2g1h-0i9j-8k7l6m5n4o3p",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/main-links-with-bg.jpg"
-        },
-        {
-            "title": "Instagram",
-            "icon": "sicon-instagram",
-            "name": "instagram",
-            "key": "7e1a10fd-186c-42a1-88b0-f0b5bb116ac4"
-        },
-        {
             "title": "Instagram Gallery",
             "icon": "sicon-instagram",
             "name": "instagram-gallery",
@@ -751,8 +169,427 @@
                         {
                             "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/48896540-c291-480a-ad89-ca80625d2088_280x300.webp",
                             "images_collection.image_url": ""
+                        },
+                        {
+                            "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/140ba9b1-7738-44cd-b60f-c8a841df8433_280x300.webp",
+                            "images_collection.image_url": ""
+                        },
+                        {
+                            "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/52904943-dde0-414d-80eb-b1f381baa2ed_280x300.webp",
+                            "images_collection.image_url": ""
+                        },
+                        {
+                            "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/0b4d0062-1690-4a67-a7a4-f5376d200dfe_280x300.webp",
+                            "images_collection.image_url": ""
+                        },
+                        {
+                            "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/83fa6db3-5007-4f34-8067-7e481b157bf2_280x300.webp",
+                            "images_collection.image_url": ""
+                        },
+                        {
+                            "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/7500a3dd-b61a-4ec7-8cfe-e140350dc1b3_280x300.webp",
+                            "images_collection.image_url": ""
+                        },
+                        {
+                            "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/b2da2ce0-1ec7-4276-b2dc-28424d43701b_719x900.webp",
+                            "images_collection.image_url": ""
+                        },
+                        {
+                            "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/925e2ccc-6df4-48a9-87cf-9ac495a49c7c_280x300.webp",
+                            "images_collection.image_url": ""
+                        },
+                        {
+                            "images_collection.image": "https://cdn.files.salla.network/homepage/1929960736/8fbeb695-cff2-42f9-8a5c-41fa32875037_592x900.webp",
+                            "images_collection.image_url": ""
                         }
                     ]
+                }
+            ]
+        },
+         {
+            "title": "Location",
+            "icon": "sicon-instagram",
+            "name": "location",
+            "key": "c1d2e3f4-5a6b-7c8d-9e0f-1a2b3c4d5e6f",
+            "image": "https://cdn.files.salla.network/homepage/1929960736/be3b8a93-5a80-476f-b256-b11550da3ea8_1440x682.webp",
+            "fields": [
+                {
+                    "id": "special_color",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": " استخدام لوحة ألوان مستقلة ",
+                    "description": "  يتيح هذا الخيار اعتماد ألوان مخصّصة للقسم دون التأثير على ألوان المتجر الأساسية. ",
+                    "labelHTML": null,
+                    "icon": "sicon-toggle-off",
+                    "value": true,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "main_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "description": " أدخل عنوانًا جذابًا يعكس فكرة القسم ويجذب انتباه الزائر.",
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": {
+                        "ar": "حيثما كنتم… نحن بالقرب",
+                        "en": "Wherever you are… we are near"
+                    },
+                    "multilanguage": true,
+                    "required": true,
+                    "minLength": "2",
+                    "maxLength": "100"
+                },
+                {
+                    "id": "main_title_color",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "label": "لون العنوان الرئيسي",
+                    "description": "يحدد لون النص الخاص بالعنوان الرئيسي داخل القسم.",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": "#C69870",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "special_color",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "sub_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الفرعي",
+                    "description": "اكتب وصفًا مختصرًا يوضح محتوى القسم ويكمل معنى العنوان.",
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": {
+                        "ar": "شبكة فروعنا مصممة لتقديم تجربة استثنائية داخل المملكة وخارجها",
+                        "en": "Our branch network is designed to deliver an exceptional experience both within the Kingdom and abroad."
+                    },
+                    "multilanguage": true,
+                    "required": true,
+                    "minLength": "2",
+                    "maxLength": "225"
+                },
+                {
+                    "id": "sub_title_color",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "label": "لون العنوان الفرعي",
+                    "description": "يحدد لون النص الخاص بالعنوان الفرعي داخل القسم.",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "special_color",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "squra_color",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "label": "لون المربع المتحرك",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": "#C69870",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "special_color",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "country_color_not_active",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "label": "لون اسم البلد و المدينة الغير نشط",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "special_color",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "tabs_color",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "label": "لون التابات",
+                    "value": "#eee",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "special_color",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "country_color_active",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "label": "لون اسم البلد و المدينة  النشط",
+                    "value": "#ffffff",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "special_color",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "tabs_active_color",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "label": "لون التاب النشط",
+                    "value": "#C69870",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "special_color",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "branch_color",
+                    "type": "string",
+                    "format": "color",
+                    "inputType": "color",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "label": "لون اسم الفرع و العنوان التوضحي",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "special_color",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "branches",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الفروع",
+                    "description": null,
+                    "labelHTML": null,
+                    "item_label": null,
+                    "icon": "sicon-list-add",
+                    "fields": [
+                        {
+                            "id": "country",
+                            "type": "string",
+                            "format": "text",
+                            "label": "الدولة",
+                            "description": null,
+                            "labelHTML": null,
+                            "placeholder": "Placeholder text ..",
+                            "icon": "sicon-format-text-alt",
+                            "value": {
+                                "ar": "مصر",
+                                "en": "egypt"
+                            },
+                            "multilanguage": true,
+                            "required": true,
+                            "minLength": "2",
+                            "maxLength": "60"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": "https://cdn.files.salla.network/homepage/2052110979/ea2fd000-cf24-41a6-9d41-5228d318b781.webp",
+                            "label": "صورة الخلفية",
+                            "id": "country_flag",
+                            "format": "image",
+                            "required": true,
+                            "placeholder": null,
+                            "description": "* المقاس المناسب للصورة هو 1233×500 بكسل"
+                        },
+                        {
+                            "id": "city",
+                            "type": "string",
+                            "format": "text",
+                            "label": "المدينة",
+                            "description": null,
+                            "labelHTML": null,
+                            "placeholder": "Placeholder text ..",
+                            "icon": "sicon-format-text-alt",
+                            "value": {
+                                "ar": "القاهرة",
+                                "en": "cairo"
+                            },
+                            "multilanguage": true,
+                            "required": true,
+                            "minLength": "2",
+                            "maxLength": "60"
+                        },
+                        {
+                            "id": "branch_name",
+                            "type": "string",
+                            "format": "text",
+                            "label": "اسم الفرع",
+                            "description": "اكتب عنوانًا جذّابًا يعبّر عن",
+                            "labelHTML": null,
+                            "placeholder": "Placeholder text ..",
+                            "icon": "sicon-format-text-alt",
+                            "value": {
+                                "ar": "دقي",
+                                "en": "dokki"
+                            },
+                            "multilanguage": true,
+                            "required": true,
+                            "minLength": "2",
+                            "maxLength": "60"
+                        },
+                        {
+                            "id": "branch_address",
+                            "type": "string",
+                            "format": "text",
+                            "label": "عنوان الفرع",
+                            "description": null,
+                            "labelHTML": null,
+                            "placeholder": "Placeholder text ..",
+                            "icon": "sicon-format-text-alt",
+                            "value": {
+                                "ar": "مدينة نصر، القاهرة",
+                                "en": "Nasr City, Cairo"
+                            },
+                            "multilanguage": true,
+                            "required": true,
+                            "minLength": "2",
+                            "maxLength": "150"
+                        },
+                        {
+                            "id": "map_url",
+                            "type": "string",
+                            "format": "text",
+                            "label": "رابط Google Map (Embed)",
+                            "required": true
+                        }
+                    ],
+                    "value": [
+                        {
+                            "country": "السعودية",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/9ff017c1-7a55-418b-a97b-89915efb1519.webp",
+                            "city": "الرياض",
+                            "branch_name": "فرع العليا",
+                            "branch_address": "شارع العليا، حي العليا، الرياض",
+                            "map_url": "https://www.google.com/maps?q=Al+Olaya,+Riyadh,+Saudi+Arabia&output=embed"
+                        },
+                        {
+                            "country": "السعودية",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/9ff017c1-7a55-418b-a97b-89915efb1519.webp",
+                            "city": "مكه",
+                            "branch_name": "فرع مكة",
+                            "branch_address": "حي العزيزية، مكة المكرمة",
+                            "map_url": "https://www.google.com/maps?q=Mecca,+Saudi+Arabia&output=embed"
+                        },
+                        {
+                            "country": "السعودية",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/9ff017c1-7a55-418b-a97b-89915efb1519.webp",
+                            "city": "جده",
+                            "branch_name": "فرع جدة",
+                            "branch_address": "شارع التحلية، جدة",
+                            "map_url": "https://www.google.com/maps?q=Jeddah,+Saudi+Arabia&output=embed"
+                        },
+                        {
+                            "country": "مصر",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/785e336f-02dc-4ece-95d3-5479574d2b97.webp",
+                            "city": "القاهرة",
+                            "branch_name": "فرع القاهرة",
+                            "branch_address": "مدينة نصر، القاهرة",
+                            "map_url": "https://www.google.com/maps?q=Nasr+City,+Cairo,+Egypt&output=embed"
+                        },
+                        {
+                            "country": "مصر",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/785e336f-02dc-4ece-95d3-5479574d2b97.webp",
+                            "city": "الاسكندارية",
+                            "branch_name": "فرع الإسكندرية",
+                            "branch_address": "سيدي جابر، الإسكندرية",
+                            "map_url": "https://www.google.com/maps?q=Sidi+Gaber,+Alexandria,+Egypt&output=embed"
+                        },
+                        {
+                            "country": "الامارات",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/ea2fd000-cf24-41a6-9d41-5228d318b781.webp",
+                            "city": "دبي",
+                            "branch_name": "فرع دبي",
+                            "branch_address": "ديرة، دبي",
+                            "map_url": "https://www.google.com/maps?q=Deira,+Dubai,+UAE&output=embed"
+                        },
+                        {
+                            "country": "الامارات",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/ea2fd000-cf24-41a6-9d41-5228d318b781.webp",
+                            "city": "ابوظبي",
+                            "branch_name": "فرع أبوظبي",
+                            "branch_address": "شارع الكورنيش، أبوظبي",
+                            "map_url": "https://www.google.com/maps?q=Abu+Dhabi,+UAE&output=embed"
+                        },
+                        {
+                            "country": "الامارات",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/ea2fd000-cf24-41a6-9d41-5228d318b781.webp",
+                            "city": "الشارقة",
+                            "branch_name": "فرع الشارقة",
+                            "branch_address": "النهدة، الشارقة",
+                            "map_url": "https://www.google.com/maps?q=Sharjah,+UAE&output=embed"
+                        },
+                        {
+                            "country": "الامارات",
+                            "country_flag": "https://cdn.files.salla.network/homepage/2052110979/ea2fd000-cf24-41a6-9d41-5228d318b781.webp",
+                            "city": "عجمان",
+                            "branch_name": "فرع عجمان",
+                            "branch_address": "النعيمية، عجمان",
+                            "map_url": "https://www.google.com/maps?q=Ajman,+UAE&output=embed"
+                        }
+                    ],
+                    "minLength": 1,
+                    "maxLength": 50
                 }
             ]
         }
