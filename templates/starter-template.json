@@ -1377,6 +1377,356 @@
           "maxLength": 6
         }
       ]
+    },
+    {
+      "title": {
+        "en": "Header",
+        "ar": "الهيدر"
+      },
+      "icon": "sicon-header",
+      "name": "header",
+      "key": "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d",
+      "image": "https://cdn.files.salla.network/homepage/1929960736/be3b8a93-5a80-476f-b256-b11550da3ea8_1440x682.webp",
+      "fields": [
+        {
+          "id": "logo",
+          "type": "string",
+          "format": "image",
+          "label": "شعار الموقع",
+          "labelHTML": null,
+          "placeholder": "e.g. https://hostname.com/logo.png",
+          "icon": "sicon-image",
+          "value": "",
+          "required": false
+        },
+        {
+          "id": "menu_items",
+          "type": "collection",
+          "format": "collection",
+          "label": "قائمة التنقل",
+          "description": null,
+          "labelHTML": null,
+          "item_label": "رابط",
+          "icon": "sicon-list-add",
+          "fields": [
+            {
+              "id": "menu_items.label",
+              "type": "string",
+              "format": "text",
+              "label": "اسم الرابط",
+              "description": null,
+              "labelHTML": null,
+              "placeholder": "مثال: الرئيسية",
+              "icon": "sicon-format-text-alt",
+              "value": {
+                "ar": "",
+                "en": ""
+              },
+              "multilanguage": true,
+              "required": true,
+              "minLength": "1",
+              "maxLength": "50"
+            },
+            {
+              "id": "menu_items.url",
+              "type": "string",
+              "format": "text",
+              "label": "الرابط",
+              "description": null,
+              "labelHTML": null,
+              "placeholder": "مثال: /home",
+              "icon": "sicon-link",
+              "value": "",
+              "required": true
+            }
+          ],
+          "value": [
+            {
+              "menu_items.label": {
+                "ar": "الرئيسية",
+                "en": "Home"
+              },
+              "menu_items.url": "/"
+            },
+            {
+              "menu_items.label": {
+                "ar": "المنتجات",
+                "en": "Products"
+              },
+              "menu_items.url": "/products"
+            },
+            {
+              "menu_items.label": {
+                "ar": "من نحن",
+                "en": "About Us"
+              },
+              "menu_items.url": "/about"
+            },
+            {
+              "menu_items.label": {
+                "ar": "اتصل بنا",
+                "en": "Contact"
+              },
+              "menu_items.url": "/contact"
+            }
+          ],
+          "minLength": 1,
+          "maxLength": 10
+        },
+        {
+          "id": "show_search",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار أيقونة البحث",
+          "description": null,
+          "labelHTML": null,
+          "icon": "sicon-search",
+          "value": true,
+          "selected": false,
+          "required": false
+        },
+        {
+          "id": "show_cart",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار أيقونة السلة",
+          "description": null,
+          "labelHTML": null,
+          "icon": "sicon-cart",
+          "value": true,
+          "selected": false,
+          "required": false
+        },
+        {
+          "id": "show_account",
+          "type": "boolean",
+          "format": "switch",
+          "label": "إظهار أيقونة الحساب",
+          "description": null,
+          "labelHTML": null,
+          "icon": "sicon-user",
+          "value": true,
+          "selected": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Footer",
+        "ar": "الفوتر"
+      },
+      "icon": "sicon-footer",
+      "name": "footer",
+      "key": "b2c3d4e5-f6a7-5b6c-9d0e-1f2a3b4c5d6e",
+      "image": "https://cdn.files.salla.network/homepage/1929960736/be3b8a93-5a80-476f-b256-b11550da3ea8_1440x682.webp",
+      "fields": [
+        {
+          "id": "logo",
+          "type": "string",
+          "format": "image",
+          "label": "شعار الموقع",
+          "labelHTML": null,
+          "placeholder": "e.g. https://hostname.com/logo.png",
+          "icon": "sicon-image",
+          "value": "",
+          "required": false
+        },
+        {
+          "id": "description",
+          "type": "string",
+          "format": "text",
+          "label": "وصف الموقع",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "اكتب وصفاً مختصراً للموقع...",
+          "icon": "sicon-format-text-alt",
+          "value": {
+            "ar": "",
+            "en": ""
+          },
+          "multilanguage": true,
+          "required": false,
+          "minLength": "10",
+          "maxLength": "500"
+        },
+        {
+          "id": "contact_info.email",
+          "type": "string",
+          "format": "text",
+          "label": "البريد الإلكتروني",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "example@email.com",
+          "icon": "sicon-email",
+          "value": "hussein.ahamed66@gmail.com",
+          "required": false
+        },
+        {
+          "id": "contact_info.phone",
+          "type": "string",
+          "format": "text",
+          "label": "رقم الهاتف",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "+966 50 000 0000",
+          "icon": "sicon-phone",
+          "value": "45656564",
+          "required": false
+        },
+        {
+          "id": "contact_info.address",
+          "type": "string",
+          "format": "text",
+          "label": "العنوان",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "المدينة، الشارع، المبنى",
+          "icon": "sicon-location",
+          "value": {
+            "ar": "",
+            "en": ""
+          },
+          "multilanguage": true,
+          "required": false
+        },
+        {
+          "id": "copyright_text",
+          "type": "string",
+          "format": "text",
+          "label": "نص حقوق النشر",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "© 2024 جميع الحقوق محفوظة",
+          "icon": "sicon-format-text-alt",
+          "value": {
+            "ar": "© 2024 جميع الحقوق محفوظة",
+            "en": "© 2024 All Rights Reserved"
+          },
+          "multilanguage": true,
+          "required": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Privacy Policy",
+        "ar": "سياسة الخصوصية"
+      },
+      "icon": "sicon-shield",
+      "name": "privacy-policy",
+      "key": "c3d4e5f6-a7b8-6c7d-0e1f-2a3b4c5d6e7f",
+      "image": "https://cdn.files.salla.network/homepage/1929960736/be3b8a93-5a80-476f-b256-b11550da3ea8_1440x682.webp",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": "عنوان الصفحة",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "سياسة الخصوصية",
+          "icon": "sicon-format-text-alt",
+          "value": {
+            "ar": "سياسة الخصوصية",
+            "en": "Privacy Policy"
+          },
+          "multilanguage": true,
+          "required": false
+        },
+        {
+          "id": "last_updated",
+          "type": "string",
+          "format": "text",
+          "label": "تاريخ آخر تحديث",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "2024",
+          "icon": "sicon-calendar",
+          "value": "2024",
+          "required": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Terms & Conditions",
+        "ar": "الشروط والأحكام"
+      },
+      "icon": "sicon-file-text",
+      "name": "terms-conditions",
+      "key": "d4e5f6a7-b8c9-7d8e-1f2a-3b4c5d6e7f8",
+      "image": "https://cdn.files.salla.network/homepage/1929960736/be3b8a93-5a80-476f-b256-b11550da3ea8_1440x682.webp",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": "عنوان الصفحة",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "الشروط والأحكام",
+          "icon": "sicon-format-text-alt",
+          "value": {
+            "ar": "الشروط والأحكام",
+            "en": "Terms & Conditions"
+          },
+          "multilanguage": true,
+          "required": false
+        },
+        {
+          "id": "last_updated",
+          "type": "string",
+          "format": "text",
+          "label": "تاريخ آخر تحديث",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "2024",
+          "icon": "sicon-calendar",
+          "value": "2024",
+          "required": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Shipping & Delivery",
+        "ar": "الشحن والتوصيل"
+      },
+      "icon": "sicon-truck",
+      "name": "shipping-delivery",
+      "key": "e5f6a7b8-c9d0-8e9f-2a3b-4c5d6e7f8a9",
+      "image": "https://cdn.files.salla.network/homepage/1929960736/be3b8a93-5a80-476f-b256-b11550da3ea8_1440x682.webp",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": "عنوان الصفحة",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "الشحن والتوصيل",
+          "icon": "sicon-format-text-alt",
+          "value": {
+            "ar": "الشحن والتوصيل",
+            "en": "Shipping & Delivery"
+          },
+          "multilanguage": true,
+          "required": false
+        },
+        {
+          "id": "last_updated",
+          "type": "string",
+          "format": "text",
+          "label": "تاريخ آخر تحديث",
+          "description": null,
+          "labelHTML": null,
+          "placeholder": "2024",
+          "icon": "sicon-calendar",
+          "value": "2024",
+          "required": false
+        }
+      ]
     }
   ]
 }

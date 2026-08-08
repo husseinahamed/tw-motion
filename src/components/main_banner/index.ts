@@ -268,7 +268,7 @@ export default class MainBanner extends LitElement {
     };
 
     return html`
-      <section class="dl-main-banner relative overflow-hidden" section-id="${this.sectionId}">
+      <section id="main-banner" class="dl-main-banner relative overflow-hidden" section-id="${this.sectionId}">
         
         <div 
           class="swiper mainSwiper overflow-hidden"
