@@ -4,11 +4,11 @@
         "en": "Motion"
     },
     "description": {
-        "ar": "",
-        "en": ""
+        "ar": null,
+        "en": null
     },
     "author_email": "hussein.ahamed66@gmail.com",
-    "support_url": "",
+    "support_url": "https://masarcode.com/",
     "repository": "https://github.com/husseinahamed/tw-motion",
     "components": [
         {
