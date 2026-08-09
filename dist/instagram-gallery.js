@@ -1,71 +1,118 @@
 import { LitElement as h, css as b, html as r } from "lit";
-import { property as c } from "lit/decorators.js";
-var v = Object.defineProperty, u = (p, l, a, y) => {
-  for (var e = void 0, t = p.length - 1, n; t >= 0; t--)
-    (n = p[t]) && (e = n(l, a, e) || e);
-  return e && v(l, a, e), e;
+import { property as u } from "lit/decorators.js";
+var x = Object.defineProperty, m = (y, l, t, i) => {
+  for (var e = void 0, a = y.length - 1, s; a >= 0; a--)
+    (s = y[a]) && (e = s(l, t, e) || e);
+  return e && x(l, t, e), e;
 };
-const m = class m extends h {
+const p = class p extends h {
   constructor() {
     super(...arguments), this.position = "default";
   }
+  // Helper function to get localized text
+  getLocalizedText(l) {
+    var t, i, e;
+    if (typeof l == "string") return l;
+    if (l && typeof l == "object") {
+      const a = ((e = (i = (t = window.salla) == null ? void 0 : t.lang) == null ? void 0 : i.getLocale) == null ? void 0 : e.call(i)) || "ar";
+      return l[a] || l.ar || l.en || "";
+    }
+    return "";
+  }
   render() {
     if (!this.config) return r``;
-    const l = this.config, a = `gallery-${this.position}`, y = l.is_color ? `--gallery-bg: ${l.color_bg || "#fff"}; --gallery-heading-color: ${l.color_title || "#111"}; --gallery-btn-bg: ${l.color_btn_bg || "#111"}; --gallery-btn-text: ${l.color_btn_text || "#fff"};` : "", e = l.images_collection || [], t = 5, n = 2;
+    const l = this.config, t = `gallery-${this.position}`, i = l.is_color ? `--gallery-bg: ${l.color_bg || "#fff"}; --gallery-heading-color: ${l.color_title || "#111"}; --gallery-btn-bg: ${l.color_btn_bg || "#111"}; --gallery-btn-text: ${l.color_btn_text || "#fff"};` : "", e = l.images_collection || [], a = 5, s = 2;
     return r`
-      <section class="lu-image-gallery ${l.is_color ? "is-custom-color" : ""}" id="${a}" style="${y}">
+      <section
+        class="lu-image-gallery ${l.is_color ? "is-custom-color" : ""}"
+        id="${t}"
+        style="${i}"
+      >
         <div class="lu-container">
-
           <div class="lu-gallery-header">
             ${l.main_title ? r`
-              <h2 class="lu-gallery-heading">${l.main_title}</h2>
-            ` : ""}
-
+                    <h2 class="lu-gallery-heading">
+                      ${this.getLocalizedText(l.main_title)}
+                    </h2>
+                  ` : ""}
             ${l.btn_text ? r`
-              <a href="${l.btn_url || "#"}" class="lu-gallery-btn" target="_blank" aria-label="${l.btn_text}">
-                ${l.btn_text}
-              </a>
-            ` : ""}
+                    <a
+                      href="${l.btn_url || "#"}"
+                      class="lu-gallery-btn"
+                      target="_blank"
+                      aria-label="${this.getLocalizedText(l.btn_text)}"
+                    >
+                      ${this.getLocalizedText(l.btn_text)}
+                    </a>
+                  ` : ""}
           </div>
 
           ${e.length > 0 ? r`
-            <!-- نسخة الديسكتوب -->
-            <div class="lu-gallery-grid lu-desktop-grid">
-              ${Array.from({ length: t }).map((f, i) => {
-      const s = Math.min(i, t - 1 - i);
-      return r`
-                  <div class="lu-gallery-column" style="--col-distance: ${s};">
-                    ${e.map((g, d) => d % t === i ? this.renderGalleryItem(g, l.main_title) : "")}
+                  <!-- نسخة الديسكتوب -->
+                  <div class="lu-gallery-grid lu-desktop-grid">
+                    ${Array.from({ length: a }).map(
+      (f, o) => {
+        const g = Math.min(o, a - 1 - o);
+        return r`
+                    <div
+                      class="lu-gallery-column"
+                      style="--col-distance: ${g};"
+                    >
+                      ${e.map((d, c) => c % a === o ? this.renderGalleryItem(
+          d,
+          this.getLocalizedText(l.main_title)
+        ) : "")}
+                    </div>
+                  `;
+      }
+    )}
                   </div>
-                `;
-    })}
-            </div>
 
-            <!-- نسخة الموبايل -->
-            <div class="lu-gallery-grid lu-mobile-grid">
-              ${Array.from({ length: n }).map((f, i) => {
-      const s = Math.min(i, n - 1 - i);
-      return r`
-                  <div class="lu-gallery-column" style="--col-distance: ${s};">
-                    ${e.map((g, d) => d % n === i ? this.renderGalleryItem(g, l.main_title) : "")}
+                  <!-- نسخة الموبايل -->
+                  <div class="lu-gallery-grid lu-mobile-grid">
+                    ${Array.from({ length: s }).map(
+      (f, o) => {
+        const g = Math.min(o, s - 1 - o);
+        return r`
+                    <div
+                      class="lu-gallery-column"
+                      style="--col-distance: ${g};"
+                    >
+                      ${e.map((d, c) => c % s === o ? this.renderGalleryItem(
+          d,
+          this.getLocalizedText(l.main_title)
+        ) : "")}
+                    </div>
+                  `;
+      }
+    )}
                   </div>
-                `;
-    })}
-            </div>
-          ` : ""}
-
+                ` : ""}
         </div>
       </section>
     `;
   }
-  renderGalleryItem(l, a) {
+  renderGalleryItem(l, t) {
     return l.image ? l.image_url && l.image_url !== "#" ? r`
-        <a href="${l.image_url}" class="lu-gallery-item" target="_blank" aria-label="Gallery image link">
-          <img src="${l.image}" alt="${a || "Gallery Image"}" loading="lazy">
+        <a
+          href="${l.image_url}"
+          class="lu-gallery-item"
+          target="_blank"
+          aria-label="Gallery image link"
+        >
+          <img
+            src="${l.image}"
+            alt="${t || "Gallery Image"}"
+            loading="lazy"
+          />
         </a>
       ` : r`
       <div class="lu-gallery-item">
-        <img src="${l.image}" alt="${a || "Gallery Image"}" loading="lazy">
+        <img
+          src="${l.image}"
+          alt="${t || "Gallery Image"}"
+          loading="lazy"
+        />
       </div>
     ` : r`
         <div class="lu-gallery-item">
@@ -74,7 +121,7 @@ const m = class m extends h {
       `;
   }
 };
-m.styles = b`
+p.styles = b`
     :host {
       display: block;
       width: 100%;
@@ -163,8 +210,10 @@ m.styles = b`
       margin-top: calc(2 * var(--offset-unit));
     }
 
-    .lu-desktop-grid:has(.lu-gallery-item:hover) .lu-gallery-column:nth-child(2),
-    .lu-desktop-grid:has(.lu-gallery-item:hover) .lu-gallery-column:nth-last-child(2) {
+    .lu-desktop-grid:has(.lu-gallery-item:hover)
+      .lu-gallery-column:nth-child(2),
+    .lu-desktop-grid:has(.lu-gallery-item:hover)
+      .lu-gallery-column:nth-last-child(2) {
       margin-top: 0;
     }
 
@@ -223,7 +272,9 @@ m.styles = b`
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
+      *,
+      ::before,
+      ::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -231,17 +282,17 @@ m.styles = b`
       }
     }
   `;
-let o = m;
-u([
-  c({ type: String })
-], o.prototype, "position");
-u([
-  c({ type: Object })
-], o.prototype, "config");
-u([
-  c({ type: Object })
-], o.prototype, "theme");
-typeof o < "u" && o.registerSallaComponent("salla-instagram-gallery");
+let n = p;
+m([
+  u({ type: String })
+], n.prototype, "position");
+m([
+  u({ type: Object })
+], n.prototype, "config");
+m([
+  u({ type: Object })
+], n.prototype, "theme");
+typeof n < "u" && n.registerSallaComponent("salla-instagram-gallery");
 export {
-  o as default
+  n as default
 };

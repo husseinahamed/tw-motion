@@ -196,7 +196,9 @@ export default class MainBanner extends LitElement {
       border-color: rgba(255, 255, 255, 0.6);
       opacity: 1;
       transform: scale(1.1);
-      box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.2);
+      box-shadow:
+        inset 0 0 30px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(255, 255, 255, 0.2);
     }
 
     .card-image {
@@ -232,7 +234,7 @@ export default class MainBanner extends LitElement {
     }
 
     .label {
-      font-family: 'Marhey', sans-serif;
+      font-family: "Marhey", sans-serif;
       display: block;
       font-size: 1.125rem;
       font-weight: 700;
@@ -250,7 +252,12 @@ export default class MainBanner extends LitElement {
     .cc-gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(14,14,14,0.6) 0%, transparent 40%, rgba(14,14,14,0.9) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(14, 14, 14, 0.6) 0%,
+        transparent 40%,
+        rgba(14, 14, 14, 0.9) 100%
+      );
       z-index: 1;
     }
   `;
@@ -259,34 +266,49 @@ export default class MainBanner extends LitElement {
     const categories = this.config?.all_categories || [];
 
     // Helper to get localized text
-    const getLocalizedText = (value: any, key: string = 'ar') => {
-      if (typeof value === 'string') return value;
-      if (value && typeof value === 'object') {
-        return value[key] || value['ar'] || value['en'] || '';
+    const getLocalizedText = (value: any, key: string = "ar") => {
+      if (typeof value === "string") return value;
+      if (value && typeof value === "object") {
+        return value[key] || value["ar"] || value["en"] || "";
       }
-      return '';
+      return "";
     };
 
     return html`
-      <section id="main-banner" class="dl-main-banner relative overflow-hidden" section-id="${this.sectionId}">
-        
-        <div 
+      <section
+        id="main-banner"
+        class="dl-main-banner relative overflow-hidden"
+        section-id="${this.sectionId}"
+      >
+        <div
           class="swiper mainSwiper overflow-hidden"
           @mouseenter="${() => this.stopAutoplay()}"
           @mouseleave="${() => this.startAutoplay()}"
         >
           <div class="swiper-wrapper">
-            ${categories.map((category: any, index: number) => html`
-              <div class="swiper-slide relative ${index === this.activeIndex ? 'active' : ''}">
-                <div class="cc-gradient"></div>
-                <img class="w-full h-full" src="${category.imgCatebanner}" alt="${getLocalizedText(category.catName)}" />
-                <div class="text-wrapper absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 z-[9]">
-                  <p class="text-lg md:text-2xl font-bold text-text-secondary line-clamp-3 text-center">
-                    ${getLocalizedText(category.desCate)}
-                  </p>
+            ${categories.map(
+              (category: any, index: number) => html`
+                <div
+                  class="swiper-slide relative ${index === this.activeIndex ? "active" : ""}"
+                >
+                  <div class="cc-gradient"></div>
+                  <img
+                    class="w-full h-full"
+                    src="${category.imgCatebanner}"
+                    alt="${getLocalizedText(category.catName)}"
+                  />
+                  <div
+                    class="text-wrapper absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 z-[9]"
+                  >
+                    <p
+                      class="text-lg md:text-2xl font-bold text-text-secondary line-clamp-3 text-center"
+                    >
+                      ${getLocalizedText(category.desCate)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            `)}
+              `,
+            )}
           </div>
         </div>
 
@@ -297,8 +319,8 @@ export default class MainBanner extends LitElement {
               const isActive = index === this.activeIndex;
               return html`
                 <div class="swiper-slide">
-                  <div 
-                    class="mood-card group/btn relative w-40 h-40 rounded-full border border-white/30 hover:border-white/60 bg-black/20 hover:bg-white/10 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-500 hover:scale-110 cursor-pointer overflow-hidden ${isActive ? 'active' : ''}" 
+                  <div
+                    class="mood-card group/btn relative w-40 h-40 rounded-full border border-white/30 hover:border-white/60 bg-black/20 hover:bg-white/10 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-500 hover:scale-110 cursor-pointer overflow-hidden ${isActive ? "active" : ""}"
                     role="button"
                     @mouseenter="${() => {
                       this.stopAutoplay();
@@ -306,12 +328,22 @@ export default class MainBanner extends LitElement {
                     }}"
                     @mouseleave="${() => this.startAutoplay()}"
                   >
-                    <div class="glow-ring absolute inset-0 rounded-full border border-transparent transition-all duration-700 ease-out group-hover/btn:border-white/60 group-hover/btn:opacity-100 group-hover/btn:scale-110"></div>
-                    
-                    <img class="card-image absolute inset-0 rounded-full w-full h-full object-cover opacity-0 transition-opacity duration-700 group-hover/btn:opacity-100" src="${category.imgCate}" alt="${getLocalizedText(category.catName)}" />
-                    
-                    <div class="card-content relative z-10 text-center transition-all duration-700 group-hover/btn:opacity-0">
-                      <span class="label text-lg md:text-2xl font-bold uppercase tracking-widest text-text-secondary">
+                    <div
+                      class="glow-ring absolute inset-0 rounded-full border border-transparent transition-all duration-700 ease-out group-hover/btn:border-white/60 group-hover/btn:opacity-100 group-hover/btn:scale-110"
+                    ></div>
+
+                    <img
+                      class="card-image absolute inset-0 rounded-full w-full h-full object-cover opacity-0 transition-opacity duration-700 group-hover/btn:opacity-100"
+                      src="${category.imgCate}"
+                      alt="${getLocalizedText(category.catName)}"
+                    />
+
+                    <div
+                      class="card-content relative z-10 text-center transition-all duration-700 group-hover/btn:opacity-0"
+                    >
+                      <span
+                        class="label text-lg md:text-2xl font-bold uppercase tracking-widest text-text-secondary"
+                      >
                         ${getLocalizedText(category.catName)}
                       </span>
                     </div>
@@ -321,7 +353,6 @@ export default class MainBanner extends LitElement {
             })}
           </div>
         </div>
-
       </section>
     `;
   }

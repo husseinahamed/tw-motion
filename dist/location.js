@@ -1,13 +1,23 @@
-import { LitElement as z, css as j, html as l } from "lit";
-import { property as p } from "lit/decorators.js";
-var B = Object.defineProperty, h = (u, t, e, r) => {
-  for (var i = void 0, o = u.length - 1, s; o >= 0; o--)
-    (s = u[o]) && (i = s(t, e, i) || i);
-  return i && B(t, e, i), i;
+import { LitElement as k, css as j, html as l } from "lit";
+import { property as h } from "lit/decorators.js";
+var T = Object.defineProperty, p = (m, t, e, r) => {
+  for (var i = void 0, n = m.length - 1, s; n >= 0; n--)
+    (s = m[n]) && (i = s(t, e, i) || i);
+  return i && T(t, e, i), i;
 };
-const y = class y extends z {
+const y = class y extends k {
   constructor() {
     super(...arguments), this.position = "default", this.activeCountry = "", this.activeCity = "";
+  }
+  // Helper function to get localized text
+  getLocalizedText(t) {
+    var e, r, i;
+    if (typeof t == "string") return t;
+    if (t && typeof t == "object") {
+      const n = ((i = (r = (e = window.salla) == null ? void 0 : e.lang) == null ? void 0 : r.getLocale) == null ? void 0 : i.call(r)) || "ar";
+      return t[n] || t.ar || t.en || "";
+    }
+    return "";
   }
   firstUpdated() {
     var e;
@@ -16,16 +26,16 @@ const y = class y extends z {
       const r = this.getGroupedBranches(t), i = Object.keys(r);
       if (i.length > 0) {
         this.activeCountry = i[0];
-        const o = Object.keys(r[this.activeCountry]);
-        o.length > 0 && (this.activeCity = o[0]);
+        const n = Object.keys(r[this.activeCountry]);
+        n.length > 0 && (this.activeCity = n[0]);
       }
     }
   }
   getGroupedBranches(t) {
     const e = {};
     return t.forEach((r) => {
-      var i, o, s;
-      e[i = r.country] ?? (e[i] = {}), (o = e[r.country])[s = r.city] ?? (o[s] = []), e[r.country][r.city].push(r);
+      var i, n, s;
+      e[i = r.country] ?? (e[i] = {}), (n = e[r.country])[s = r.city] ?? (n[s] = []), e[r.country][r.city].push(r);
     }), e;
   }
   getCountryFlags(t) {
@@ -38,42 +48,44 @@ const y = class y extends z {
   render() {
     var C;
     if (!this.config) return l``;
-    const t = this.config, e = this.position, r = t.branches || [], i = this.getGroupedBranches(r), o = this.getCountryFlags(r), s = Object.keys(i);
+    const t = this.config, e = this.position, r = t.branches || [], i = this.getGroupedBranches(r), n = this.getCountryFlags(r), s = Object.keys(i);
     s.length > 0 && !this.activeCountry && (this.activeCountry = s[0]);
     const d = this.activeCountry && i[this.activeCountry] ? Object.keys(i[this.activeCountry]) : [];
     d.length > 0 && (!this.activeCity || !d.includes(this.activeCity)) && (this.activeCity = d[0]);
-    const $ = t.special_color ? t.main_title_color || "inherit" : "var(--color-primary)", w = t.special_color ? t.sub_title_color || "inherit" : "var(--text-primary)", g = t.special_color && t.tabs_color || "#e7e3e3", b = t.special_color ? t.tabs_active_color || "inherit" : "var(--color-primary)", v = t.special_color ? t.country_color_not_active || "inherit" : "var(--text-primary)", f = t.special_color ? t.country_color_active || "inherit" : "var(--text-secondary)", x = t.special_color ? t.branch_color || "inherit" : "var(--text-primary)";
+    const $ = t.special_color ? t.main_title_color || "inherit" : "var(--color-primary)", w = t.special_color ? t.sub_title_color || "inherit" : "var(--text-primary)", u = t.special_color && t.tabs_color || "#e7e3e3", b = t.special_color ? t.tabs_active_color || "inherit" : "var(--color-primary)", f = t.special_color ? t.country_color_not_active || "inherit" : "var(--text-primary)", v = t.special_color ? t.country_color_active || "inherit" : "var(--text-secondary)", x = t.special_color ? t.branch_color || "inherit" : "var(--text-primary)";
     return l`
       <section class="store-branches store-branches-${e}">
-        
         ${t.main_title ? l`
-          <h2 class="main-heading" style="color: ${$};">
-            ${t.main_title}
-          </h2>
-        ` : ""}
-
+                <h2 class="main-heading" style="color: ${$};">
+                  ${this.getLocalizedText(t.main_title)}
+                </h2>
+              ` : ""}
         ${t.sub_title ? l`
-          <p class="sub-heading" style="color: ${w};">
-            ${t.sub_title}
-          </p>
-        ` : ""}
+                <p class="sub-heading" style="color: ${w};">
+                  ${this.getLocalizedText(t.sub_title)}
+                </p>
+              ` : ""}
 
         <div class="container">
           <div class="countries-tabs">
-            ${s.map((n) => {
-      const c = n === this.activeCountry;
+            ${s.map((o) => {
+      const c = o === this.activeCountry;
       return l`
-                <button 
-                  class="country-tab ${c ? "active" : ""}" 
-                  style="background: ${c ? b : g}; color: ${c ? f : v};"
+                <button
+                  class="country-tab ${c ? "active" : ""}"
+                  style="background: ${c ? b : u}; color: ${c ? v : f};"
                   @click="${() => {
-        this.activeCountry = n;
-        const k = Object.keys(i[n]);
-        this.activeCity = k[0] || "";
+        this.activeCountry = o;
+        const z = Object.keys(i[o]);
+        this.activeCity = z[0] || "";
       }}"
                 >
-                  <img src="${o[n]}" class="country-flag" alt="${n}">
-                  <span>${n}</span>
+                  <img
+                    src="${n[o]}"
+                    class="country-flag"
+                    alt="${this.getLocalizedText(o)}"
+                  />
+                  <span>${this.getLocalizedText(o)}</span>
                 </button>
               `;
     })}
@@ -81,38 +93,58 @@ const y = class y extends z {
 
           <div class="grid-layout">
             <div class="cities-tabs">
-              ${d.map((n) => {
-      const c = n === this.activeCity, _ = c ? b : g, m = c ? f : v;
+              ${d.map((o) => {
+      const c = o === this.activeCity, _ = c ? b : u, g = c ? v : f;
       return l`
-                  <button 
-                    class="city-tab ${c ? "active" : ""}" 
-                    style="background: ${_}; color: ${m};"
-                    @click="${() => this.activeCity = n}"
+                  <button
+                    class="city-tab ${c ? "active" : ""}"
+                    style="background: ${_}; color: ${g};"
+                    @click="${() => this.activeCity = o}"
                   >
-                    <i class="sicon-map-location city-icon" style="color: ${m};"></i>
-                    <span>${n}</span>
+                    <i
+                      class="sicon-map-location city-icon"
+                      style="color: ${g};"
+                    ></i>
+                    <span>${this.getLocalizedText(o)}</span>
                   </button>
                 `;
     })}
             </div>
 
             <div class="branches-content">
-              ${this.activeCountry && this.activeCity && ((C = i[this.activeCountry]) != null && C[this.activeCity]) ? i[this.activeCountry][this.activeCity].map((n) => l`
-                  <div class="branch-item">
-                    <h4 class="branch-title" style="color: ${x};">${n.branch_name}</h4>
-                    <div class="branch-address" style="color: ${x};">
-                      <i class="sicon-location-target" style="font-size: 1.25rem;"></i>
-                      <span>${n.branch_address}</span>
-                    </div>
-                    <div class="branch-map">
-                      <iframe src="${n.map_url}" loading="lazy"></iframe>
-                    </div>
-                  </div>
-                `) : ""}
+              ${this.activeCountry && this.activeCity && ((C = i[this.activeCountry]) != null && C[this.activeCity]) ? i[this.activeCountry][this.activeCity].map(
+      (o) => l`
+                        <div class="branch-item">
+                          <h4
+                            class="branch-title"
+                            style="color: ${x};"
+                          >
+                            ${this.getLocalizedText(o.branch_name)}
+                          </h4>
+                          <div
+                            class="branch-address"
+                            style="color: ${x};"
+                          >
+                            <i
+                              class="sicon-location-target"
+                              style="font-size: 1.25rem;"
+                            ></i>
+                            <span
+                              >${this.getLocalizedText(o.branch_address)}</span
+                            >
+                          </div>
+                          <div class="branch-map">
+                            <iframe
+                              src="${o.map_url}"
+                              loading="lazy"
+                            ></iframe>
+                          </div>
+                        </div>
+                      `
+    ) : ""}
             </div>
           </div>
         </div>
-
       </section>
     `;
   }
@@ -139,7 +171,7 @@ y.styles = j`
       margin-bottom: 1rem;
       text-align: center;
       font-weight: 600;
-      font-family: 'Marhey', sans-serif;
+      font-family: "Marhey", sans-serif;
     }
 
     @media (min-width: 768px) {
@@ -217,7 +249,9 @@ y.styles = j`
       align-items: center;
       gap: 8px;
       text-align: left;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
     }
 
     .country-flag {
@@ -225,7 +259,7 @@ y.styles = j`
       height: 30px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 0 2px rgba(0,0,0,.2);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     }
 
     .city-icon {
@@ -276,20 +310,20 @@ y.styles = j`
     }
   `;
 let a = y;
-h([
-  p({ type: String })
+p([
+  h({ type: String })
 ], a.prototype, "position");
-h([
-  p({ type: Object })
+p([
+  h({ type: Object })
 ], a.prototype, "config");
-h([
-  p({ type: Object })
+p([
+  h({ type: Object })
 ], a.prototype, "theme");
-h([
-  p({ type: String })
+p([
+  h({ type: String })
 ], a.prototype, "activeCountry");
-h([
-  p({ type: String })
+p([
+  h({ type: String })
 ], a.prototype, "activeCity");
 typeof a < "u" && a.registerSallaComponent("salla-location");
 export {

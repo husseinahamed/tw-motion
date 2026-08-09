@@ -19,12 +19,12 @@ export default class Header extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.checkMobile();
-    window.addEventListener('resize', () => this.checkMobile());
+    window.addEventListener("resize", () => this.checkMobile());
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('resize', () => this.checkMobile());
+    window.removeEventListener("resize", () => this.checkMobile());
   }
 
   checkMobile() {
@@ -89,7 +89,7 @@ export default class Header extends LitElement {
     }
 
     .nav-link::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -4px;
       left: 0;
@@ -190,26 +190,26 @@ export default class Header extends LitElement {
 
   render() {
     const config = this.config || {};
-    const logo = config.logo || '';
+    const logo = config.logo || "";
     const menuItems = config.menu_items || [];
     const showSearch = config.show_search !== false;
     const showCart = config.show_cart !== false;
     const showAccount = config.show_account !== false;
 
     // Helper to get localized text
-    const getLocalizedText = (value: any, key: string = 'ar') => {
-      if (typeof value === 'string') return value;
-      if (value && typeof value === 'object') {
-        return value[key] || value['ar'] || value['en'] || '';
+    const getLocalizedText = (value: any, key: string = "ar") => {
+      if (typeof value === "string") return value;
+      if (value && typeof value === "object") {
+        return value[key] || value["ar"] || value["en"] || "";
       }
-      return '';
+      return "";
     };
 
     // Fixed menu items
     const fixedMenuItems = [
-      { label: 'الرئيسية', url: '#main-banner' },
-      { label: 'الأقسام', url: '#sections' },
-      { label: 'موقعنا', url: '#location' }
+      { label: "الرئيسية", url: "#main-banner" },
+      { label: "الأقسام", url: "#sections" },
+      { label: "موقعنا", url: "#location" },
     ];
 
     // Get current page path
@@ -231,61 +231,143 @@ export default class Header extends LitElement {
 
           <!-- Desktop Navigation -->
           <nav class="nav-menu">
-            ${fixedMenuItems.map((item: any) => html`
-              <a href="${item.url}" class="nav-link">${item.label}</a>
-            `)}
-            ${currentPageMenuItems.map((item: any) => html`
-              <a href="${item.url}" class="nav-link">${getLocalizedText(item.label)}</a>
-            `)}
+            ${fixedMenuItems.map(
+              (item: any) => html`
+                <a href="${item.url}" class="nav-link">${item.label}</a>
+              `,
+            )}
+            ${currentPageMenuItems.map(
+              (item: any) => html`
+                <a href="${item.url}" class="nav-link"
+                  >${getLocalizedText(item.label)}</a
+                >
+              `,
+            )}
           </nav>
 
           <!-- Header Actions -->
           <div class="header-actions">
-            ${showSearch ? html`
-              <button class="action-btn" aria-label="Search">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </button>
-            ` : ''}
-            ${showAccount ? html`
-              <button class="action-btn" aria-label="Account">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </button>
-            ` : ''}
-            ${showCart ? html`
-              <button class="action-btn" aria-label="Cart">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </button>
-            ` : ''}
+            ${
+              showSearch
+                ? html`
+                    <button class="action-btn" aria-label="Search">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </button>
+                  `
+                : ""
+            }
+            ${
+              showAccount
+                ? html`
+                    <button class="action-btn" aria-label="Account">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                    </button>
+                  `
+                : ""
+            }
+            ${
+              showCart
+                ? html`
+                    <button class="action-btn" aria-label="Cart">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+                      </svg>
+                    </button>
+                  `
+                : ""
+            }
           </div>
 
           <!-- Mobile Menu Button -->
-          <button class="mobile-menu-btn" @click="${() => this.toggleMenu()}" aria-label="Menu">
-            ${this.isMenuOpen ? html`
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ` : html`
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            `}
+          <button
+            class="mobile-menu-btn"
+            @click="${() => this.toggleMenu()}"
+            aria-label="Menu"
+          >
+            ${
+              this.isMenuOpen
+                ? html`
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  `
+                : html`
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    </svg>
+                  `
+            }
           </button>
         </div>
 
         <!-- Mobile Menu -->
-        <div class="mobile-menu ${this.isMenuOpen ? 'open' : ''}">
-          ${fixedMenuItems.map((item: any) => html`
-            <a href="${item.url}" class="mobile-nav-link">${item.label}</a>
-          `)}
-          ${currentPageMenuItems.map((item: any) => html`
-            <a href="${item.url}" class="mobile-nav-link">${getLocalizedText(item.label)}</a>
-          `)}
+        <div class="mobile-menu ${this.isMenuOpen ? "open" : ""}">
+          ${fixedMenuItems.map(
+            (item: any) => html`
+              <a href="${item.url}" class="mobile-nav-link">${item.label}</a>
+            `,
+          )}
+          ${currentPageMenuItems.map(
+            (item: any) => html`
+              <a href="${item.url}" class="mobile-nav-link"
+                >${getLocalizedText(item.label)}</a
+              >
+            `,
+          )}
         </div>
       </header>
     `;

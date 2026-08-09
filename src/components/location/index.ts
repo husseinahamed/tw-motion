@@ -34,6 +34,17 @@ export default class Location extends LitElement {
   @property({ type: String }) private activeCountry: string = "";
   @property({ type: String }) private activeCity: string = "";
 
+  // Helper function to get localized text
+  private getLocalizedText(value: any): string {
+    if (typeof value === "string") return value;
+    if (value && typeof value === "object") {
+      // Try to get the current language, fallback to 'ar' then 'en'
+      const currentLang = (window as any).salla?.lang?.getLocale?.() || "ar";
+      return value[currentLang] || value["ar"] || value["en"] || "";
+    }
+    return "";
+  }
+
   firstUpdated() {
     const branches = this.config?.branches || [];
     if (branches.length > 0) {
@@ -51,7 +62,7 @@ export default class Location extends LitElement {
 
   getGroupedBranches(branches: any[]) {
     const grouped: Record<string, Record<string, any[]>> = {};
-    branches.forEach(item => {
+    branches.forEach((item) => {
       grouped[item.country] ??= {};
       grouped[item.country][item.city] ??= [];
       grouped[item.country][item.city].push(item);
@@ -61,7 +72,7 @@ export default class Location extends LitElement {
 
   getCountryFlags(branches: any[]) {
     const flags: Record<string, string> = {};
-    branches.forEach(item => {
+    branches.forEach((item) => {
       flags[item.country] ??= item.country_flag;
     });
     return flags;
@@ -89,7 +100,7 @@ export default class Location extends LitElement {
       margin-bottom: 1rem;
       text-align: center;
       font-weight: 600;
-      font-family: 'Marhey', sans-serif;
+      font-family: "Marhey", sans-serif;
     }
 
     @media (min-width: 768px) {
@@ -167,7 +178,9 @@ export default class Location extends LitElement {
       align-items: center;
       gap: 8px;
       text-align: left;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
     }
 
     .country-flag {
@@ -175,7 +188,7 @@ export default class Location extends LitElement {
       height: 30px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 0 2px rgba(0,0,0,.2);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     }
 
     .city-icon {
@@ -240,54 +253,82 @@ export default class Location extends LitElement {
       this.activeCountry = countries[0];
     }
 
-    const cities = this.activeCountry && grouped[this.activeCountry] ? Object.keys(grouped[this.activeCountry]) : [];
+    const cities =
+      this.activeCountry && grouped[this.activeCountry]
+        ? Object.keys(grouped[this.activeCountry])
+        : [];
 
-    if (cities.length > 0 && (!this.activeCity || !cities.includes(this.activeCity))) {
+    if (
+      cities.length > 0 &&
+      (!this.activeCity || !cities.includes(this.activeCity))
+    ) {
       this.activeCity = cities[0];
     }
 
     // Dynamic Colors configuration
-    const mainTitleColor = c.special_color ? (c.main_title_color || 'inherit') : 'var(--color-primary)';
-    const subTitleColor = c.special_color ? (c.sub_title_color || 'inherit') : 'var(--text-primary)';
-    const tabsBg = c.special_color ? (c.tabs_color || '#e7e3e3') : '#e7e3e3';
-    const tabsActiveBg = c.special_color ? (c.tabs_active_color || 'inherit') : 'var(--color-primary)';
-    const colorNotActive = c.special_color ? (c.country_color_not_active || 'inherit') : 'var(--text-primary)';
-    const colorActive = c.special_color ? (c.country_color_active || 'inherit') : 'var(--text-secondary)';
-    const branchTextColor = c.special_color ? (c.branch_color || 'inherit') : 'var(--text-primary)';
+    const mainTitleColor = c.special_color
+      ? c.main_title_color || "inherit"
+      : "var(--color-primary)";
+    const subTitleColor = c.special_color
+      ? c.sub_title_color || "inherit"
+      : "var(--text-primary)";
+    const tabsBg = c.special_color ? c.tabs_color || "#e7e3e3" : "#e7e3e3";
+    const tabsActiveBg = c.special_color
+      ? c.tabs_active_color || "inherit"
+      : "var(--color-primary)";
+    const colorNotActive = c.special_color
+      ? c.country_color_not_active || "inherit"
+      : "var(--text-primary)";
+    const colorActive = c.special_color
+      ? c.country_color_active || "inherit"
+      : "var(--text-secondary)";
+    const branchTextColor = c.special_color
+      ? c.branch_color || "inherit"
+      : "var(--text-primary)";
 
     return html`
       <section class="store-branches store-branches-${position}">
-        
-        ${c.main_title ? html`
-          <h2 class="main-heading" style="color: ${mainTitleColor};">
-            ${c.main_title}
-          </h2>
-        ` : ''}
-
-        ${c.sub_title ? html`
-          <p class="sub-heading" style="color: ${subTitleColor};">
-            ${c.sub_title}
-          </p>
-        ` : ''}
+        ${
+          c.main_title
+            ? html`
+                <h2 class="main-heading" style="color: ${mainTitleColor};">
+                  ${this.getLocalizedText(c.main_title)}
+                </h2>
+              `
+            : ""
+        }
+        ${
+          c.sub_title
+            ? html`
+                <p class="sub-heading" style="color: ${subTitleColor};">
+                  ${this.getLocalizedText(c.sub_title)}
+                </p>
+              `
+            : ""
+        }
 
         <div class="container">
           <div class="countries-tabs">
-            ${countries.map(country => {
+            ${countries.map((country) => {
               const isActive = country === this.activeCountry;
               const currentBg = isActive ? tabsActiveBg : tabsBg;
               const currentColor = isActive ? colorActive : colorNotActive;
               return html`
-                <button 
-                  class="country-tab ${isActive ? 'active' : ''}" 
+                <button
+                  class="country-tab ${isActive ? "active" : ""}"
                   style="background: ${currentBg}; color: ${currentColor};"
                   @click="${() => {
                     this.activeCountry = country;
                     const newCities = Object.keys(grouped[country]);
-                    this.activeCity = newCities[0] || '';
+                    this.activeCity = newCities[0] || "";
                   }}"
                 >
-                  <img src="${countryFlags[country]}" class="country-flag" alt="${country}">
-                  <span>${country}</span>
+                  <img
+                    src="${countryFlags[country]}"
+                    class="country-flag"
+                    alt="${this.getLocalizedText(country)}"
+                  />
+                  <span>${this.getLocalizedText(country)}</span>
                 </button>
               `;
             })}
@@ -295,42 +336,66 @@ export default class Location extends LitElement {
 
           <div class="grid-layout">
             <div class="cities-tabs">
-              ${cities.map(city => {
+              ${cities.map((city) => {
                 const isActive = city === this.activeCity;
                 const currentBg = isActive ? tabsActiveBg : tabsBg;
                 const currentColor = isActive ? colorActive : colorNotActive;
                 return html`
-                  <button 
-                    class="city-tab ${isActive ? 'active' : ''}" 
+                  <button
+                    class="city-tab ${isActive ? "active" : ""}"
                     style="background: ${currentBg}; color: ${currentColor};"
-                    @click="${() => this.activeCity = city}"
+                    @click="${() => (this.activeCity = city)}"
                   >
-                    <i class="sicon-map-location city-icon" style="color: ${currentColor};"></i>
-                    <span>${city}</span>
+                    <i
+                      class="sicon-map-location city-icon"
+                      style="color: ${currentColor};"
+                    ></i>
+                    <span>${this.getLocalizedText(city)}</span>
                   </button>
                 `;
               })}
             </div>
 
             <div class="branches-content">
-              ${this.activeCountry && this.activeCity && grouped[this.activeCountry]?.[this.activeCity] ? 
-                grouped[this.activeCountry][this.activeCity].map(branch => html`
-                  <div class="branch-item">
-                    <h4 class="branch-title" style="color: ${branchTextColor};">${branch.branch_name}</h4>
-                    <div class="branch-address" style="color: ${branchTextColor};">
-                      <i class="sicon-location-target" style="font-size: 1.25rem;"></i>
-                      <span>${branch.branch_address}</span>
-                    </div>
-                    <div class="branch-map">
-                      <iframe src="${branch.map_url}" loading="lazy"></iframe>
-                    </div>
-                  </div>
-                `) : ''
+              ${
+                this.activeCountry &&
+                this.activeCity &&
+                grouped[this.activeCountry]?.[this.activeCity]
+                  ? grouped[this.activeCountry][this.activeCity].map(
+                      (branch) => html`
+                        <div class="branch-item">
+                          <h4
+                            class="branch-title"
+                            style="color: ${branchTextColor};"
+                          >
+                            ${this.getLocalizedText(branch.branch_name)}
+                          </h4>
+                          <div
+                            class="branch-address"
+                            style="color: ${branchTextColor};"
+                          >
+                            <i
+                              class="sicon-location-target"
+                              style="font-size: 1.25rem;"
+                            ></i>
+                            <span
+                              >${this.getLocalizedText(branch.branch_address)}</span
+                            >
+                          </div>
+                          <div class="branch-map">
+                            <iframe
+                              src="${branch.map_url}"
+                              loading="lazy"
+                            ></iframe>
+                          </div>
+                        </div>
+                      `,
+                    )
+                  : ""
               }
             </div>
           </div>
         </div>
-
       </section>
     `;
   }

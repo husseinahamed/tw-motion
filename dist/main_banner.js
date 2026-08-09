@@ -29,25 +29,40 @@ const c = class c extends h {
     var s;
     const o = ((s = this.config) == null ? void 0 : s.all_categories) || [], e = (t, i = "ar") => typeof t == "string" ? t : t && typeof t == "object" && (t[i] || t.ar || t.en) || "";
     return n`
-      <section id="main-banner" class="dl-main-banner relative overflow-hidden" section-id="${this.sectionId}">
-        
-        <div 
+      <section
+        id="main-banner"
+        class="dl-main-banner relative overflow-hidden"
+        section-id="${this.sectionId}"
+      >
+        <div
           class="swiper mainSwiper overflow-hidden"
           @mouseenter="${() => this.stopAutoplay()}"
           @mouseleave="${() => this.startAutoplay()}"
         >
           <div class="swiper-wrapper">
-            ${o.map((t, i) => n`
-              <div class="swiper-slide relative ${i === this.activeIndex ? "active" : ""}">
-                <div class="cc-gradient"></div>
-                <img class="w-full h-full" src="${t.imgCatebanner}" alt="${e(t.catName)}" />
-                <div class="text-wrapper absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 z-[9]">
-                  <p class="text-lg md:text-2xl font-bold text-text-secondary line-clamp-3 text-center">
-                    ${e(t.desCate)}
-                  </p>
+            ${o.map(
+      (t, i) => n`
+                <div
+                  class="swiper-slide relative ${i === this.activeIndex ? "active" : ""}"
+                >
+                  <div class="cc-gradient"></div>
+                  <img
+                    class="w-full h-full"
+                    src="${t.imgCatebanner}"
+                    alt="${e(t.catName)}"
+                  />
+                  <div
+                    class="text-wrapper absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 z-[9]"
+                  >
+                    <p
+                      class="text-lg md:text-2xl font-bold text-text-secondary line-clamp-3 text-center"
+                    >
+                      ${e(t.desCate)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            `)}
+              `
+    )}
           </div>
         </div>
 
@@ -58,20 +73,30 @@ const c = class c extends h {
       const a = i === this.activeIndex;
       return n`
                 <div class="swiper-slide">
-                  <div 
-                    class="mood-card group/btn relative w-40 h-40 rounded-full border border-white/30 hover:border-white/60 bg-black/20 hover:bg-white/10 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-500 hover:scale-110 cursor-pointer overflow-hidden ${a ? "active" : ""}" 
+                  <div
+                    class="mood-card group/btn relative w-40 h-40 rounded-full border border-white/30 hover:border-white/60 bg-black/20 hover:bg-white/10 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-500 hover:scale-110 cursor-pointer overflow-hidden ${a ? "active" : ""}"
                     role="button"
                     @mouseenter="${() => {
         this.stopAutoplay(), this.activeIndex = i;
       }}"
                     @mouseleave="${() => this.startAutoplay()}"
                   >
-                    <div class="glow-ring absolute inset-0 rounded-full border border-transparent transition-all duration-700 ease-out group-hover/btn:border-white/60 group-hover/btn:opacity-100 group-hover/btn:scale-110"></div>
-                    
-                    <img class="card-image absolute inset-0 rounded-full w-full h-full object-cover opacity-0 transition-opacity duration-700 group-hover/btn:opacity-100" src="${t.imgCate}" alt="${e(t.catName)}" />
-                    
-                    <div class="card-content relative z-10 text-center transition-all duration-700 group-hover/btn:opacity-0">
-                      <span class="label text-lg md:text-2xl font-bold uppercase tracking-widest text-text-secondary">
+                    <div
+                      class="glow-ring absolute inset-0 rounded-full border border-transparent transition-all duration-700 ease-out group-hover/btn:border-white/60 group-hover/btn:opacity-100 group-hover/btn:scale-110"
+                    ></div>
+
+                    <img
+                      class="card-image absolute inset-0 rounded-full w-full h-full object-cover opacity-0 transition-opacity duration-700 group-hover/btn:opacity-100"
+                      src="${t.imgCate}"
+                      alt="${e(t.catName)}"
+                    />
+
+                    <div
+                      class="card-content relative z-10 text-center transition-all duration-700 group-hover/btn:opacity-0"
+                    >
+                      <span
+                        class="label text-lg md:text-2xl font-bold uppercase tracking-widest text-text-secondary"
+                      >
                         ${e(t.catName)}
                       </span>
                     </div>
@@ -81,7 +106,6 @@ const c = class c extends h {
     })}
           </div>
         </div>
-
       </section>
     `;
   }
@@ -242,7 +266,9 @@ c.styles = b`
       border-color: rgba(255, 255, 255, 0.6);
       opacity: 1;
       transform: scale(1.1);
-      box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.2);
+      box-shadow:
+        inset 0 0 30px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(255, 255, 255, 0.2);
     }
 
     .card-image {
@@ -278,7 +304,7 @@ c.styles = b`
     }
 
     .label {
-      font-family: 'Marhey', sans-serif;
+      font-family: "Marhey", sans-serif;
       display: block;
       font-size: 1.125rem;
       font-weight: 700;
@@ -296,7 +322,12 @@ c.styles = b`
     .cc-gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(14,14,14,0.6) 0%, transparent 40%, rgba(14,14,14,0.9) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(14, 14, 14, 0.6) 0%,
+        transparent 40%,
+        rgba(14, 14, 14, 0.9) 100%
+      );
       z-index: 1;
     }
   `;

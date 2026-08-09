@@ -1,4 +1,4 @@
-{
+ {
     "name": "tw-motion",
     "version": "1.0.0",
     "description": "",
@@ -31,6 +31,9 @@
     "private": true,
     "dependencies": {
         "lit": "^3.2.1",
-        "@salla.sa/twilight-bundles": "0.1.62"
+        "@salla.sa/twilight-bundles": "0.1.62",
+        "@salla.sa/twilight-tailwind-theme": "latest",
+        "@salla.sa/twilight-components": "latest",
+        "@salla.sa/twilight": "latest"
     }
 }

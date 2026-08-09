@@ -23,6 +23,17 @@ export default class InstagramGallery extends LitElement {
     };
   };
 
+  // Helper function to get localized text
+  private getLocalizedText(value: any): string {
+    if (typeof value === "string") return value;
+    if (value && typeof value === "object") {
+      // Try to get the current language, fallback to 'ar' then 'en'
+      const currentLang = (window as any).salla?.lang?.getLocale?.() || "ar";
+      return value[currentLang] || value["ar"] || value["en"] || "";
+    }
+    return "";
+  }
+
   static styles = css`
     :host {
       display: block;
@@ -112,8 +123,10 @@ export default class InstagramGallery extends LitElement {
       margin-top: calc(2 * var(--offset-unit));
     }
 
-    .lu-desktop-grid:has(.lu-gallery-item:hover) .lu-gallery-column:nth-child(2),
-    .lu-desktop-grid:has(.lu-gallery-item:hover) .lu-gallery-column:nth-last-child(2) {
+    .lu-desktop-grid:has(.lu-gallery-item:hover)
+      .lu-gallery-column:nth-child(2),
+    .lu-desktop-grid:has(.lu-gallery-item:hover)
+      .lu-gallery-column:nth-last-child(2) {
       margin-top: 0;
     }
 
@@ -172,7 +185,9 @@ export default class InstagramGallery extends LitElement {
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
+      *,
+      ::before,
+      ::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -189,71 +204,110 @@ export default class InstagramGallery extends LitElement {
 
     // إعداد متغيرات الألوان الديناميكية حسب رغبة المستخدم
     const inlineStyles = comp.is_color
-      ? `--gallery-bg: ${comp.color_bg || '#fff'}; --gallery-heading-color: ${comp.color_title || '#111'}; --gallery-btn-bg: ${comp.color_btn_bg || '#111'}; --gallery-btn-text: ${comp.color_btn_text || '#fff'};`
-      : '';
+      ? `--gallery-bg: ${comp.color_bg || "#fff"}; --gallery-heading-color: ${comp.color_title || "#111"}; --gallery-btn-bg: ${comp.color_btn_bg || "#111"}; --gallery-btn-text: ${comp.color_btn_text || "#fff"};`
+      : "";
 
     const images = comp.images_collection || [];
     const desktopColumns = 5;
     const mobileColumns = 2;
 
     return html`
-      <section class="lu-image-gallery ${comp.is_color ? 'is-custom-color' : ''}" id="${sectionId}" style="${inlineStyles}">
+      <section
+        class="lu-image-gallery ${comp.is_color ? "is-custom-color" : ""}"
+        id="${sectionId}"
+        style="${inlineStyles}"
+      >
         <div class="lu-container">
-
           <div class="lu-gallery-header">
-            ${comp.main_title ? html`
-              <h2 class="lu-gallery-heading">${comp.main_title}</h2>
-            ` : ''}
-
-            ${comp.btn_text ? html`
-              <a href="${comp.btn_url || '#'}" class="lu-gallery-btn" target="_blank" aria-label="${comp.btn_text}">
-                ${comp.btn_text}
-              </a>
-            ` : ''}
+            ${
+              comp.main_title
+                ? html`
+                    <h2 class="lu-gallery-heading">
+                      ${this.getLocalizedText(comp.main_title)}
+                    </h2>
+                  `
+                : ""
+            }
+            ${
+              comp.btn_text
+                ? html`
+                    <a
+                      href="${comp.btn_url || "#"}"
+                      class="lu-gallery-btn"
+                      target="_blank"
+                      aria-label="${this.getLocalizedText(comp.btn_text)}"
+                    >
+                      ${this.getLocalizedText(comp.btn_text)}
+                    </a>
+                  `
+                : ""
+            }
           </div>
 
-          ${images.length > 0 ? html`
-            <!-- نسخة الديسكتوب -->
-            <div class="lu-gallery-grid lu-desktop-grid">
-              ${Array.from({ length: desktopColumns }).map((_, col: number) => {
-                const distance = Math.min(col, desktopColumns - 1 - col);
-                return html`
-                  <div class="lu-gallery-column" style="--col-distance: ${distance};">
-                    ${images.map((item: any, index: number) => {
+          ${
+            images.length > 0
+              ? html`
+                  <!-- نسخة الديسكتوب -->
+                  <div class="lu-gallery-grid lu-desktop-grid">
+                    ${Array.from({ length: desktopColumns }).map(
+                (_, col: number) => {
+                  const distance = Math.min(col, desktopColumns - 1 - col);
+                  return html`
+                    <div
+                      class="lu-gallery-column"
+                      style="--col-distance: ${distance};"
+                    >
+                      ${images.map((item: any, index: number) => {
                       if (index % desktopColumns === col) {
-                        return this.renderGalleryItem(item, comp.main_title);
+                        return this.renderGalleryItem(
+                          item,
+                          this.getLocalizedText(comp.main_title),
+                        );
                       }
-                      return '';
+                      return "";
                     })}
+                    </div>
+                  `;
+                },
+              )}
                   </div>
-                `;
-              })}
-            </div>
 
-            <!-- نسخة الموبايل -->
-            <div class="lu-gallery-grid lu-mobile-grid">
-              ${Array.from({ length: mobileColumns }).map((_, col: number) => {
-                const distance = Math.min(col, mobileColumns - 1 - col);
-                return html`
-                  <div class="lu-gallery-column" style="--col-distance: ${distance};">
-                    ${images.map((item: any, index: number) => {
+                  <!-- نسخة الموبايل -->
+                  <div class="lu-gallery-grid lu-mobile-grid">
+                    ${Array.from({ length: mobileColumns }).map(
+                (_, col: number) => {
+                  const distance = Math.min(col, mobileColumns - 1 - col);
+                  return html`
+                    <div
+                      class="lu-gallery-column"
+                      style="--col-distance: ${distance};"
+                    >
+                      ${images.map((item: any, index: number) => {
                       if (index % mobileColumns === col) {
-                        return this.renderGalleryItem(item, comp.main_title);
+                        return this.renderGalleryItem(
+                          item,
+                          this.getLocalizedText(comp.main_title),
+                        );
                       }
-                      return '';
+                      return "";
                     })}
+                    </div>
+                  `;
+                },
+              )}
                   </div>
-                `;
-              })}
-            </div>
-          ` : ''}
-
+                `
+              : ""
+          }
         </div>
       </section>
     `;
   }
 
-  renderGalleryItem(item: { image: string; image_url?: string }, mainTitle?: string) {
+  renderGalleryItem(
+    item: { image: string; image_url?: string },
+    mainTitle?: string,
+  ) {
     if (!item.image) {
       return html`
         <div class="lu-gallery-item">
@@ -262,17 +316,30 @@ export default class InstagramGallery extends LitElement {
       `;
     }
 
-    if (item.image_url && item.image_url !== '#') {
+    if (item.image_url && item.image_url !== "#") {
       return html`
-        <a href="${item.image_url}" class="lu-gallery-item" target="_blank" aria-label="Gallery image link">
-          <img src="${item.image}" alt="${mainTitle || 'Gallery Image'}" loading="lazy">
+        <a
+          href="${item.image_url}"
+          class="lu-gallery-item"
+          target="_blank"
+          aria-label="Gallery image link"
+        >
+          <img
+            src="${item.image}"
+            alt="${mainTitle || "Gallery Image"}"
+            loading="lazy"
+          />
         </a>
       `;
     }
 
     return html`
       <div class="lu-gallery-item">
-        <img src="${item.image}" alt="${mainTitle || 'Gallery Image'}" loading="lazy">
+        <img
+          src="${item.image}"
+          alt="${mainTitle || "Gallery Image"}"
+          loading="lazy"
+        />
       </div>
     `;
   }
