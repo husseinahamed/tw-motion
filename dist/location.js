@@ -1,11 +1,11 @@
 import { LitElement as k, css as j, html as l } from "lit";
 import { property as h } from "lit/decorators.js";
-var T = Object.defineProperty, p = (m, t, e, r) => {
-  for (var i = void 0, n = m.length - 1, s; n >= 0; n--)
-    (s = m[n]) && (i = s(t, e, i) || i);
+var T = Object.defineProperty, p = (y, t, e, r) => {
+  for (var i = void 0, o = y.length - 1, n; o >= 0; o--)
+    (n = y[o]) && (i = n(t, e, i) || i);
   return i && T(t, e, i), i;
 };
-const y = class y extends k {
+const m = class m extends k {
   constructor() {
     super(...arguments), this.position = "default", this.activeCountry = "", this.activeCity = "";
   }
@@ -14,8 +14,8 @@ const y = class y extends k {
     var e, r, i;
     if (typeof t == "string") return t;
     if (t && typeof t == "object") {
-      const n = ((i = (r = (e = window.salla) == null ? void 0 : e.lang) == null ? void 0 : r.getLocale) == null ? void 0 : i.call(r)) || "ar";
-      return t[n] || t.ar || t.en || "";
+      const o = ((i = (r = (e = window.salla) == null ? void 0 : e.lang) == null ? void 0 : r.getLocale) == null ? void 0 : i.call(r)) || "ar";
+      return t[o] || t.ar || t.en || "";
     }
     return "";
   }
@@ -26,33 +26,34 @@ const y = class y extends k {
       const r = this.getGroupedBranches(t), i = Object.keys(r);
       if (i.length > 0) {
         this.activeCountry = i[0];
-        const n = Object.keys(r[this.activeCountry]);
-        n.length > 0 && (this.activeCity = n[0]);
+        const o = Object.keys(r[this.activeCountry]);
+        o.length > 0 && (this.activeCity = o[0]);
       }
     }
   }
   getGroupedBranches(t) {
     const e = {};
     return t.forEach((r) => {
-      var i, n, s;
-      e[i = r.country] ?? (e[i] = {}), (n = e[r.country])[s = r.city] ?? (n[s] = []), e[r.country][r.city].push(r);
+      var n;
+      const i = this.getLocalizedText(r.country), o = this.getLocalizedText(r.city);
+      e[i] ?? (e[i] = {}), (n = e[i])[o] ?? (n[o] = []), e[i][o].push(r);
     }), e;
   }
   getCountryFlags(t) {
     const e = {};
     return t.forEach((r) => {
-      var i;
-      e[i = r.country] ?? (e[i] = r.country_flag);
+      const i = this.getLocalizedText(r.country);
+      e[i] ?? (e[i] = r.country_flag);
     }), e;
   }
   render() {
     var C;
     if (!this.config) return l``;
-    const t = this.config, e = this.position, r = t.branches || [], i = this.getGroupedBranches(r), n = this.getCountryFlags(r), s = Object.keys(i);
-    s.length > 0 && !this.activeCountry && (this.activeCountry = s[0]);
+    const t = this.config, e = this.position, r = t.branches || [], i = this.getGroupedBranches(r), o = this.getCountryFlags(r), n = Object.keys(i);
+    n.length > 0 && !this.activeCountry && (this.activeCountry = n[0]);
     const d = this.activeCountry && i[this.activeCountry] ? Object.keys(i[this.activeCountry]) : [];
     d.length > 0 && (!this.activeCity || !d.includes(this.activeCity)) && (this.activeCity = d[0]);
-    const $ = t.special_color ? t.main_title_color || "inherit" : "var(--color-primary)", w = t.special_color ? t.sub_title_color || "inherit" : "var(--text-primary)", u = t.special_color && t.tabs_color || "#e7e3e3", b = t.special_color ? t.tabs_active_color || "inherit" : "var(--color-primary)", f = t.special_color ? t.country_color_not_active || "inherit" : "var(--text-primary)", v = t.special_color ? t.country_color_active || "inherit" : "var(--text-secondary)", x = t.special_color ? t.branch_color || "inherit" : "var(--text-primary)";
+    const $ = t.special_color ? t.main_title_color || "inherit" : "var(--color-primary)", w = t.special_color ? t.sub_title_color || "inherit" : "var(--text-primary)", b = t.special_color && t.tabs_color || "#e7e3e3", u = t.special_color ? t.tabs_active_color || "inherit" : "var(--color-primary)", f = t.special_color ? t.country_color_not_active || "inherit" : "var(--text-primary)", v = t.special_color ? t.country_color_active || "inherit" : "var(--text-secondary)", x = t.special_color ? t.branch_color || "inherit" : "var(--text-primary)";
     return l`
       <section class="store-branches store-branches-${e}">
         ${t.main_title ? l`
@@ -68,24 +69,24 @@ const y = class y extends k {
 
         <div class="container">
           <div class="countries-tabs">
-            ${s.map((o) => {
-      const c = o === this.activeCountry;
+            ${n.map((s) => {
+      const c = s === this.activeCountry;
       return l`
                 <button
                   class="country-tab ${c ? "active" : ""}"
-                  style="background: ${c ? b : u}; color: ${c ? v : f};"
+                  style="background: ${c ? u : b}; color: ${c ? v : f};"
                   @click="${() => {
-        this.activeCountry = o;
-        const z = Object.keys(i[o]);
+        this.activeCountry = s;
+        const z = Object.keys(i[s]);
         this.activeCity = z[0] || "";
       }}"
                 >
                   <img
-                    src="${n[o]}"
+                    src="${o[s]}"
                     class="country-flag"
-                    alt="${this.getLocalizedText(o)}"
+                    alt="${s}"
                   />
-                  <span>${this.getLocalizedText(o)}</span>
+                  <span>${s}</span>
                 </button>
               `;
     })}
@@ -93,19 +94,19 @@ const y = class y extends k {
 
           <div class="grid-layout">
             <div class="cities-tabs">
-              ${d.map((o) => {
-      const c = o === this.activeCity, _ = c ? b : u, g = c ? v : f;
+              ${d.map((s) => {
+      const c = s === this.activeCity, _ = c ? u : b, g = c ? v : f;
       return l`
                   <button
                     class="city-tab ${c ? "active" : ""}"
                     style="background: ${_}; color: ${g};"
-                    @click="${() => this.activeCity = o}"
+                    @click="${() => this.activeCity = s}"
                   >
                     <i
                       class="sicon-map-location city-icon"
                       style="color: ${g};"
                     ></i>
-                    <span>${this.getLocalizedText(o)}</span>
+                    <span>${s}</span>
                   </button>
                 `;
     })}
@@ -113,13 +114,13 @@ const y = class y extends k {
 
             <div class="branches-content">
               ${this.activeCountry && this.activeCity && ((C = i[this.activeCountry]) != null && C[this.activeCity]) ? i[this.activeCountry][this.activeCity].map(
-      (o) => l`
+      (s) => l`
                         <div class="branch-item">
                           <h4
                             class="branch-title"
                             style="color: ${x};"
                           >
-                            ${this.getLocalizedText(o.branch_name)}
+                            ${this.getLocalizedText(s.branch_name)}
                           </h4>
                           <div
                             class="branch-address"
@@ -130,12 +131,12 @@ const y = class y extends k {
                               style="font-size: 1.25rem;"
                             ></i>
                             <span
-                              >${this.getLocalizedText(o.branch_address)}</span
+                              >${this.getLocalizedText(s.branch_address)}</span
                             >
                           </div>
                           <div class="branch-map">
                             <iframe
-                              src="${o.map_url}"
+                              src="${s.map_url}"
                               loading="lazy"
                             ></iframe>
                           </div>
@@ -149,7 +150,7 @@ const y = class y extends k {
     `;
   }
 };
-y.styles = j`
+m.styles = j`
     :host {
       display: block;
       width: 100%;
@@ -309,7 +310,7 @@ y.styles = j`
       border: 0;
     }
   `;
-let a = y;
+let a = m;
 p([
   h({ type: String })
 ], a.prototype, "position");

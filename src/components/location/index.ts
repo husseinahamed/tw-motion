@@ -63,9 +63,11 @@ export default class Location extends LitElement {
   getGroupedBranches(branches: any[]) {
     const grouped: Record<string, Record<string, any[]>> = {};
     branches.forEach((item) => {
-      grouped[item.country] ??= {};
-      grouped[item.country][item.city] ??= [];
-      grouped[item.country][item.city].push(item);
+      const countryKey = this.getLocalizedText(item.country);
+      const cityKey = this.getLocalizedText(item.city);
+      grouped[countryKey] ??= {};
+      grouped[countryKey][cityKey] ??= [];
+      grouped[countryKey][cityKey].push(item);
     });
     return grouped;
   }
@@ -73,7 +75,8 @@ export default class Location extends LitElement {
   getCountryFlags(branches: any[]) {
     const flags: Record<string, string> = {};
     branches.forEach((item) => {
-      flags[item.country] ??= item.country_flag;
+      const countryKey = this.getLocalizedText(item.country);
+      flags[countryKey] ??= item.country_flag;
     });
     return flags;
   }
@@ -326,9 +329,9 @@ export default class Location extends LitElement {
                   <img
                     src="${countryFlags[country]}"
                     class="country-flag"
-                    alt="${this.getLocalizedText(country)}"
+                    alt="${country}"
                   />
-                  <span>${this.getLocalizedText(country)}</span>
+                  <span>${country}</span>
                 </button>
               `;
             })}
@@ -350,7 +353,7 @@ export default class Location extends LitElement {
                       class="sicon-map-location city-icon"
                       style="color: ${currentColor};"
                     ></i>
-                    <span>${this.getLocalizedText(city)}</span>
+                    <span>${city}</span>
                   </button>
                 `;
               })}
