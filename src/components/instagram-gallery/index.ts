@@ -1,5 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
+import { localizedString } from "../../utils/localizedString";
 
 export default class InstagramGallery extends LitElement {
   @property({ type: String }) position: string = "default";
@@ -23,16 +24,7 @@ export default class InstagramGallery extends LitElement {
     };
   };
 
-  // Helper function to get localized text
-  private getLocalizedText(value: any): string {
-    if (typeof value === "string") return value;
-    if (value && typeof value === "object") {
-      // Try to get the current language, fallback to 'ar' then 'en'
-      const currentLang = (window as any).salla?.lang?.getLocale?.() || "ar";
-      return value[currentLang] || value["ar"] || value["en"] || "";
-    }
-    return "";
-  }
+  // Use central localizedString helper
 
   static styles = css`
     :host {
@@ -223,7 +215,7 @@ export default class InstagramGallery extends LitElement {
               comp.main_title
                 ? html`
                     <h2 class="lu-gallery-heading">
-                      ${this.getLocalizedText(comp.main_title)}
+                      ${localizedString(comp.main_title)}
                     </h2>
                   `
                 : ""
@@ -235,9 +227,9 @@ export default class InstagramGallery extends LitElement {
                       href="${comp.btn_url || "#"}"
                       class="lu-gallery-btn"
                       target="_blank"
-                      aria-label="${this.getLocalizedText(comp.btn_text)}"
+                      aria-label="${localizedString(comp.btn_text)}"
                     >
-                      ${this.getLocalizedText(comp.btn_text)}
+                      ${localizedString(comp.btn_text)}
                     </a>
                   `
                 : ""
@@ -259,10 +251,7 @@ export default class InstagramGallery extends LitElement {
                     >
                       ${images.map((item: any, index: number) => {
                       if (index % desktopColumns === col) {
-                        return this.renderGalleryItem(
-                          item,
-                          this.getLocalizedText(comp.main_title),
-                        );
+                        return this.renderGalleryItem(item, localizedString(comp.main_title));
                       }
                       return "";
                     })}
@@ -284,10 +273,7 @@ export default class InstagramGallery extends LitElement {
                     >
                       ${images.map((item: any, index: number) => {
                       if (index % mobileColumns === col) {
-                        return this.renderGalleryItem(
-                          item,
-                          this.getLocalizedText(comp.main_title),
-                        );
+                        return this.renderGalleryItem(item, localizedString(comp.main_title));
                       }
                       return "";
                     })}

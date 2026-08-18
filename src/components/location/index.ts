@@ -1,5 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
+import { localizedString } from "../../utils/localizedString";
 
 export default class Location extends LitElement {
   @property({ type: String }) position: string = "default";
@@ -34,16 +35,7 @@ export default class Location extends LitElement {
   @property({ type: String }) private activeCountry: string = "";
   @property({ type: String }) private activeCity: string = "";
 
-  // Helper function to get localized text
-  private getLocalizedText(value: any): string {
-    if (typeof value === "string") return value;
-    if (value && typeof value === "object") {
-      // Try to get the current language, fallback to 'ar' then 'en'
-      const currentLang = (window as any).salla?.lang?.getLocale?.() || "ar";
-      return value[currentLang] || value["ar"] || value["en"] || "";
-    }
-    return "";
-  }
+  // Use central localizedString helper
 
   firstUpdated() {
     const branches = this.config?.branches || [];
@@ -63,8 +55,8 @@ export default class Location extends LitElement {
   getGroupedBranches(branches: any[]) {
     const grouped: Record<string, Record<string, any[]>> = {};
     branches.forEach((item) => {
-      const countryKey = this.getLocalizedText(item.country);
-      const cityKey = this.getLocalizedText(item.city);
+        const countryKey = localizedString(item.country);
+        const cityKey = localizedString(item.city);
       grouped[countryKey] ??= {};
       grouped[countryKey][cityKey] ??= [];
       grouped[countryKey][cityKey].push(item);
@@ -75,7 +67,7 @@ export default class Location extends LitElement {
   getCountryFlags(branches: any[]) {
     const flags: Record<string, string> = {};
     branches.forEach((item) => {
-      const countryKey = this.getLocalizedText(item.country);
+        const countryKey = localizedString(item.country);
       flags[countryKey] ??= item.country_flag;
     });
     return flags;
@@ -295,7 +287,7 @@ export default class Location extends LitElement {
           c.main_title
             ? html`
                 <h2 class="main-heading" style="color: ${mainTitleColor};">
-                  ${this.getLocalizedText(c.main_title)}
+                  ${localizedString(c.main_title)}
                 </h2>
               `
             : ""
@@ -304,7 +296,7 @@ export default class Location extends LitElement {
           c.sub_title
             ? html`
                 <p class="sub-heading" style="color: ${subTitleColor};">
-                  ${this.getLocalizedText(c.sub_title)}
+                  ${localizedString(c.sub_title)}
                 </p>
               `
             : ""
@@ -371,7 +363,7 @@ export default class Location extends LitElement {
                             class="branch-title"
                             style="color: ${branchTextColor};"
                           >
-                            ${this.getLocalizedText(branch.branch_name)}
+                            ${localizedString(branch.branch_name)}
                           </h4>
                           <div
                             class="branch-address"
@@ -382,7 +374,7 @@ export default class Location extends LitElement {
                               style="font-size: 1.25rem;"
                             ></i>
                             <span
-                              >${this.getLocalizedText(branch.branch_address)}</span
+                              >${localizedString(branch.branch_address)}</span
                             >
                           </div>
                           <div class="branch-map">
